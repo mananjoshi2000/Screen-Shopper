@@ -10,16 +10,23 @@ class APIfeatures {
     filtering(){
        const queryObj = {...this.queryString} //queryString = req.query
 
+       console.log(queryObj)
+
        const excludedFields = ['page', 'sort', 'limit']
        excludedFields.forEach(el => delete(queryObj[el]))
-       
+
        let queryStr = JSON.stringify(queryObj)
        queryStr = queryStr.replace(/\b(gte|gt|lt|lte|regex)\b/g, match => '$' + match)
 
+    //    \b at the front indicates to search for the value at the beginnning of the word - For. eg: \bLO -> it will search for LOOK not 'HELLO'
+    //    \b at the back indicates to search for the value at the end of the word - For. eg: LO\b -> it will search for HELLO not 'LOOK' 
+    //    Using \b at front and back will search for the value itself only - For eg: \bLO\b -> it will search for only 'LO' not 'LOOK' and 'HELLO'
+    
     //    gte = greater than or equal
     //    lte = lesser than or equal
     //    lt = lesser than
     //    gt = greater than
+
        this.query.find(JSON.parse(queryStr))
          
        return this;
@@ -37,6 +44,7 @@ class APIfeatures {
     }
 
     paginating(){
+
         const page = this.queryString.page * 1 || 1
         const limit = this.queryString.limit * 1 || 9
         const skip = (page - 1) * limit;
@@ -48,6 +56,7 @@ class APIfeatures {
 const productCtrl = {
     getProducts: async(req, res) =>{
         try {
+
             const features = new APIfeatures(Products.find(), req.query)
             .filtering().sorting().paginating()
 

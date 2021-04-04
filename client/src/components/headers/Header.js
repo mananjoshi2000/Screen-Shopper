@@ -14,10 +14,9 @@ function Header() {
     const [menu, setMenu] = useState(false)
 
     const logoutUser = async () =>{
+
         await axios.get('/user/logout')
-        
         localStorage.removeItem('firstLogin')
-        
         window.location.href = "/";
     }
 
@@ -52,7 +51,7 @@ function Header() {
 
             <div className="logo">
                 <h1>
-                    <Link to="/">{isAdmin ? 'Admin' : 'DevAT Shop'}</Link>
+                    <Link to="/">{isAdmin ? 'Screen Shopper Admin' : 'Screen Shopper'}</Link>
                 </h1>
             </div>
 
@@ -61,14 +60,11 @@ function Header() {
 
                 {isAdmin && adminRouter()}
 
-                {
-                    isLogged ? loggedRouter() : <li><Link to="/login">Login ✥ Register</Link></li>
-                }
+                {isLogged ? loggedRouter() : <li><Link to="/login">Login ✥ Register</Link></li>}
 
                 <li onClick={() => setMenu(!menu)}>
                     <img src={Close} alt="" width="30" className="menu" />
                 </li>
-
             </ul>
 
             {
