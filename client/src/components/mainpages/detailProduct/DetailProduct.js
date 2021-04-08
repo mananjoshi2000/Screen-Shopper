@@ -31,7 +31,7 @@ function DetailProduct() {
                         <h2>{detailProduct.title}</h2>
                         <h6>#id: {detailProduct.product_id}</h6>
                     </div>
-                    <span>$ {detailProduct.price}</span>
+                    <span>Rs. {detailProduct.price}</span>
                     <p>{detailProduct.description}</p>
                     <p>{detailProduct.content}</p>
                     <p>Sold: {detailProduct.sold}</p>
@@ -47,8 +47,10 @@ function DetailProduct() {
                 <div className="products">
                     {
                         products.map(product => {
-                            return product.category === detailProduct.category 
-                                ? <ProductItem key={product._id} product={product} /> : null
+
+                            if(product.category === detailProduct.category && product.product_id!=detailProduct.product_id)
+                                return <ProductItem key={product._id} product={product} />
+                            else return null
                         })
                     }
                 </div>

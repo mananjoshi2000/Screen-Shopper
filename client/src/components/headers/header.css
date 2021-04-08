@@ -24,7 +24,7 @@ header ul li:hover{
     opacity: 1;
 }
 .menu{
-    display: none;
+    padding-right: 1%;
 }
 .cart-icon{
     position: relative;

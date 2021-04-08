@@ -13,6 +13,4 @@ router.route('/products/:id')
     .delete(auth, authAdmin, productCtrl.deleteProduct)
     .put(auth, authAdmin, productCtrl.updateProduct)
 
-
-
 module.exports = router

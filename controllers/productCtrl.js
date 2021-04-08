@@ -28,6 +28,8 @@ class APIfeatures {
     //    gt = greater than
 
        this.query.find(JSON.parse(queryStr))
+
+       console.log('this :',this)
          
        return this;
     }
@@ -55,6 +57,7 @@ class APIfeatures {
 
 const productCtrl = {
     getProducts: async(req, res) =>{
+
         try {
 
             const features = new APIfeatures(Products.find(), req.query)

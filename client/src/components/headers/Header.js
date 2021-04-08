@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react'
 import {GlobalState} from '../../GlobalState'
-import Menu from './icon/menu.svg'
+import Logo from './icon/logo.png'
 import Close from './icon/close.svg'
 import Cart from './icon/cart.svg'
 import {Link} from 'react-router-dom'
@@ -45,13 +45,13 @@ function Header() {
 
     return (
         <header>
-            <div className="menu" onClick={() => setMenu(!menu)}>
-                <img src={Menu} alt="" width="30" />
+            <div className="menu">
+                <Link to="/"><img src={Logo} alt="" width="300" /></Link>
             </div>
 
             <div className="logo">
                 <h1>
-                    <Link to="/">{isAdmin ? 'Screen Shopper Admin' : 'Screen Shopper'}</Link>
+                    <Link to="/">{isAdmin ? 'Admin' : ''}</Link>
                 </h1>
             </div>
 
@@ -62,9 +62,9 @@ function Header() {
 
                 {isLogged ? loggedRouter() : <li><Link to="/login">Login ✥ Register</Link></li>}
 
-                <li onClick={() => setMenu(!menu)}>
+                {/* <li onClick={() => setMenu(!menu)}>
                     <img src={Close} alt="" width="30" className="menu" />
-                </li>
+                </li> */}
             </ul>
 
             {

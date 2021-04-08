@@ -2,6 +2,8 @@ import React, {useContext, useState, useEffect} from 'react'
 import {GlobalState} from '../../../GlobalState'
 import axios from 'axios'
 import PaypalButton from './PaypalButton'
+import {Link} from 'react-router-dom'
+import Button from '@material-ui/core/Button';
 
 function Cart() {
     const state = useContext(GlobalState)
@@ -85,12 +87,13 @@ function Cart() {
             {
                 cart.map(product => (
                     <div className="detail cart" key={product._id}>
-                        <img src={product.images.url} alt="" />
+                        <img src={product.images.url} alt=""/>
 
                         <div className="box-detail">
+                                <Link to={`/detail/${product._id}`} underline="hover">
                             <h2>{product.title}</h2>
-
-                            <h3>$ {product.price * product.quantity}</h3>
+                            </Link>
+                            <h3>Rs. {product.price * product.quantity}</h3>
                             <p>{product.description}</p>
                             <p>{product.content}</p>
 
@@ -99,6 +102,12 @@ function Cart() {
                                 <span>{product.quantity}</span>
                                 <button onClick={() => increment(product._id)}> + </button>
                             </div>
+
+                            <Button variant="contained" color="primary" style={{marginTop:3+'%'}}>
+                                <Link to={`/detail/${product._id}`} underline="hover">
+                                    <h4 style={{color:'white'}}> View Product </h4>
+                                </Link>
+                            </Button>
                             
                             <div className="delete" 
                             onClick={() => removeProduct(product._id)}>
@@ -110,10 +119,9 @@ function Cart() {
             }
 
             <div className="total">
-                <h3>Total: $ {total}</h3>
-                <PaypalButton
-                total={total}
-                tranSuccess={tranSuccess} />
+                <h1>Total: $ {total}</h1>
+                
+                <Button variant="contained" color="primary" className="checkout"><h2>Checkout</h2></Button>
             </div>
         </div>
     )

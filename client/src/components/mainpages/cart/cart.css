@@ -1,7 +1,7 @@
 .cart{
     position: relative;
     border: 1px solid #ccc;
-    transform: scaleY(0.98);
+    /* transform: scaleY(0.98); */
 }
 .amount span{
     color: crimson;
@@ -26,7 +26,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 3% 0 3% 0;
 }
 .total h3{
     color: crimson;
+}
+
+.checkout{
+    width:25%;
+    height: auto;
 }
