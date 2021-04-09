@@ -5,6 +5,7 @@ import Close from './icon/close.svg'
 import Cart from './icon/cart.svg'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import Menu from './icon/menu.svg'
 
 function Header() {
     const state = useContext(GlobalState)
@@ -40,12 +41,16 @@ function Header() {
 
 
     const styleMenu = {
-        left: menu ? 0 : "-100%"
+        left: menu ? 0 : "-100%",
     }
 
     return (
         <header>
-            <div className="menu">
+             <div className="menu" onClick={() => setMenu(!menu)}>
+                <img src={Menu} alt="" width="30" />
+            </div>
+
+            <div className="main-logo">
                 <Link to="/"><img src={Logo} alt="" width="300" /></Link>
             </div>
 
@@ -55,16 +60,23 @@ function Header() {
                 </h1>
             </div>
 
-            <ul style={styleMenu}>
-                <li><Link to="/">{isAdmin ? 'Products' : 'Shop'}</Link></li>
+            <ul style={styleMenu} className="menu-list">
+
+                <li className="menu-title">
+                    <div>
+                        <Link to="/"><img src={Logo} alt="" width="300" /></Link>
+                    </div>
+                </li>
+
+                <li><Link to="/" onClick={() => setMenu(!menu)}>{isAdmin ? 'Products' : 'Shop'}</Link></li>
 
                 {isAdmin && adminRouter()}
 
-                {isLogged ? loggedRouter() : <li><Link to="/login">Login ✥ Register</Link></li>}
+                {isLogged ? loggedRouter() : <li><Link to="/login" onClick={() => setMenu(!menu)}>Login</Link></li>}
 
-                {/* <li onClick={() => setMenu(!menu)}>
+                <li onClick={() => setMenu(!menu)}>
                     <img src={Close} alt="" width="30" className="menu" />
-                </li> */}
+                </li>
             </ul>
 
             {

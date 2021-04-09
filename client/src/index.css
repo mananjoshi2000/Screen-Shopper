@@ -98,8 +98,24 @@ button{
   }
 }
 
+@media (min-width: 720px){
+  .menu{
+    display: none;
+  }
+}
+
+@media (min-width: 570px){
+  .menu-title{
+    display: none;
+  }
+}
+
 @media (max-width: 570px){
   .filter_menu .row span{
+    display: none;
+  }
+
+  .main-logo{
     display: none;
   }
 }
