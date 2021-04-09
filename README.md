@@ -1,5 +1,7 @@
 # Screen Shopper
 
+Demo link : https://screenshopper.herokuapp.com/
+
 Setup:
 
 1. Clone the repository
