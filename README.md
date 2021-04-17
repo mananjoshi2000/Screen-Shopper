@@ -1,4 +1,4 @@
-# Screen Shopper
+# Screen Shopper - A place to shop 
 
 Demo link : https://screenshopper.herokuapp.com/
 
